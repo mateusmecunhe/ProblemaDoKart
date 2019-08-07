@@ -1,18 +1,12 @@
 package br.com.corrida;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
-public class LendoComScanner {
-	public static void main(String[] args) throws FileNotFoundException {
+public class ScannerDoCsv {
+	
 
-		Scanner scanner = new Scanner(new File("logPilotos.csv"));
+	public void lendoOCsv(Scanner scanner, VoltaFactory voltaFactory) {
 		
 		while (scanner.hasNextLine()) {
 
@@ -21,7 +15,16 @@ public class LendoComScanner {
 			linhaScanner.useDelimiter(";");
 
 			String hora = linhaScanner.next();
-			String piloto = linhaScanner.next();
+			
+			String pilotoString = linhaScanner.next();
+			
+			//separando codigo do nome
+			String[] pilotoDividindoString= pilotoString.split("–");
+			String codigoDoPiloto = pilotoDividindoString[0].replaceAll("\\s+", "");
+			String nomeDoPiloto = pilotoDividindoString[1].replaceAll("\\s+", "");
+			
+			
+			
 			int numeroDaVolta = linhaScanner.nextInt();
 			
 			//tempo da volta em String
@@ -39,22 +42,13 @@ public class LendoComScanner {
 			String velocidadeMediaDaVolta = linhaScanner.next();
 						
 
-			Voltas volta = new Voltas(hora, piloto, numeroDaVolta, segundosTotaisDaVolta, velocidadeMediaDaVolta);
-			volta.adicionaVolta(volta);
-			volta.adicionaPiloto(piloto);
+
+			
+			voltaFactory.criar(hora, codigoDoPiloto, nomeDoPiloto, numeroDaVolta, segundosTotaisDaVolta, velocidadeMediaDaVolta);
 
 			linhaScanner.close();
 
 		}
 		
-		System.out.println(Voltas.getPilotos());
-		System.out.println(Voltas.getVoltas());
-
-
-//		System.out.println();
-		
-//		System.out.println(listaDeVoltas);
-		scanner.close();
 	}
-
 }
