@@ -8,33 +8,20 @@ import java.util.Scanner;
 
 public class Rankeando {
 	public static void main(String[] args) throws FileNotFoundException {
-		Scanner scanner = new Scanner(new File("logPilotos.csv"));
+
+		//chamando factories
 		VoltaFactory voltaFactory = new VoltaFactory();
+		DesempenhoFactory desempenhoFactory = new DesempenhoFactory();
+
+		//chamando scanners e lendo o CSV
+		Scanner scanner = new Scanner(new File("logPilotos.csv"));
 		ScannerDoCsv scannerCsv = new ScannerDoCsv();
 		scannerCsv.lendoOCsv(scanner, voltaFactory);
-		DesempenhoFactory desempenhoFactory = new DesempenhoFactory();
-		desempenhoFactory.preencheListaDeDesempenhos(voltaFactory);
-		System.out.println(desempenhoFactory.getListaDeDesempenhos());
 		
-		System.out.println(voltaFactory.findCodigoDoPiloto("S.VETTEL"));
-		
-		
-//		
-//		voltaFactory.getListaDePilotos().forEach(p ->{
-//			System.out.println(p);
-//			System.out.println(voltaFactory.calculaTotalDeVoltas(p));
-//		});
-//		
-//		System.out.println(voltaFactory.calculaTotalDeVoltas("F.ALONSO"));
-//		
-//		voltaFactory.getListaDePilotos().forEach(p->{
-//			System.out.println(p);
-//			System.out.println(voltaFactory.calculaTempoTotalDeProva(p));
-//			
-//		});
-//		
-//		System.out.println(voltaFactory.checaSeCompletouAProva("F.ALONSO"));
+		//imprimindo lista com ordem de chegada
+		desempenhoFactory.imprimeListaDeChegada(desempenhoFactory.getListaDeDesempenhos(), voltaFactory);
 
+		//fechando scanner
 		scanner.close();
 	}
 	

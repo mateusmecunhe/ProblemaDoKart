@@ -57,14 +57,11 @@ public class VoltaFactory {
 		double tempoTotalEmSegundos = 0;
 		for (Volta volta : listaDeVoltas) {
 			if (volta.getNomeDoPiloto().equals(nomeDoPilotoAChecar)) {
-				if (calculaTotalDeVoltas(nomeDoPilotoAChecar) < 4) {
-					System.out.println("o piloto " + volta.getNomeDoPiloto() + " não completou a prova");
-					break;
-				} else {
+				
 					tempoTotalEmSegundos += volta.getTempoDaVoltaEmSegundos();
 				}
 			}
-		}
+		
 		return tempoTotalEmSegundos;
 	}
 
