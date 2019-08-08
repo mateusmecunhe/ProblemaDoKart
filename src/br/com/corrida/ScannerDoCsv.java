@@ -7,7 +7,7 @@ public class ScannerDoCsv {
 	
 
 	public void lendoOCsv(Scanner scanner, VoltaFactory voltaFactory) {
-		
+		//loop para que todas as linhas do CSV sejam instanciadas em dados legíveis
 		while (scanner.hasNextLine()) {
 			
 

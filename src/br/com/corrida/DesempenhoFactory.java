@@ -9,11 +9,11 @@ public class DesempenhoFactory {
 
 	private List<Desempenho> listaDeDesempenhos = new ArrayList<>();
 
-	// getter
 	public List<Desempenho> getListaDeDesempenhos() {
 		return listaDeDesempenhos;
 	}
 
+	
 	public Desempenho criar(String codigoDoPiloto, String nomeDoPiloto, int voltasCompletadas,
 			double tempoTotalDaProva) {
 		Desempenho desempenho = new Desempenho(codigoDoPiloto, nomeDoPiloto, voltasCompletadas, tempoTotalDaProva);
@@ -21,6 +21,7 @@ public class DesempenhoFactory {
 		return desempenho;
 	}
 
+	//método para preencher lista de desempenhos com os resultados de cada um dos pilotos
 	public List<Desempenho> preencheListaDeDesempenhos(VoltaFactory voltaFactory) {
 		voltaFactory.getListaDePilotos().forEach(p->{
 			String nomeDoPiloto = (String)p;
@@ -33,11 +34,14 @@ public class DesempenhoFactory {
 		return listaDeDesempenhos;
 		}
 
+	//método que coloca em ordem de chegada
 	public List<Desempenho> ordenaListaDeDesempenhos(List<Desempenho> listaDeDesempenhos) {
+		//primeiro coloca no topo quem completou a prova, e depois os menores tempos
 		listaDeDesempenhos.sort(Comparator.comparingInt(Desempenho::getVoltasCompletadas).reversed().thenComparingDouble(Desempenho::getTempoTotalDaProva));
 		return listaDeDesempenhos;
 	}
 	
+	//método que imprime as lista, incluindo a posição de cada piloto
 	public void imprimeListaDeChegada(List<Desempenho> listaDeDesempenhos, VoltaFactory voltaFactory) {
 		preencheListaDeDesempenhos(voltaFactory);
 		ordenaListaDeDesempenhos(listaDeDesempenhos);

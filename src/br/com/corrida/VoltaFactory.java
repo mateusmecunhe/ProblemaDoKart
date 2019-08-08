@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+//classe que coloca as voltas em uma lista e os pilotos em um set (sem repetição)
 public class VoltaFactory {
 
 	private List<Volta> listaDeVoltas = new ArrayList<Volta>();
@@ -20,6 +21,8 @@ public class VoltaFactory {
 		return listaDePilotos;
 	}
 
+	//ao chamar esse método, cada uma das voltas é incluída na lista de voltas 
+	//e o piloto é incluído no set caso ainda não tenha sido
 	public Volta criar(String hora, String codigoDoPiloto, String nomeDoPiloto, int numeroDaVolta,
 			double tempoDaVoltaEmSegundos, String velocidadeMediaDaVolta) {
 		Volta volta = new Volta(hora, codigoDoPiloto, nomeDoPiloto, numeroDaVolta, tempoDaVoltaEmSegundos,
@@ -30,9 +33,10 @@ public class VoltaFactory {
 
 	}
 
+
+	//calcula a quantidade de voltas que cada piloto deu
 	public void adicionaVolta(Volta volta) {
 		this.listaDeVoltas.add(volta);
-		System.out.println("volta adicionada na lista de Voltas");
 	}
 
 	public Integer calculaTotalDeVoltas(String nomeDoPilotoAChecar) {
@@ -45,6 +49,7 @@ public class VoltaFactory {
 		return contador;
 	}
 
+	//checa se o piloto completou todas as voltas
 	public boolean checaSeCompletouAProva(String nomeDoPilotoAChecar) {
 		if (calculaTotalDeVoltas(nomeDoPilotoAChecar).equals((Integer) 4)) {
 			return true;

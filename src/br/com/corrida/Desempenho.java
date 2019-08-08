@@ -1,5 +1,7 @@
 package br.com.corrida;
 
+
+//classe para organizar dados e desempenho de cada piloto
 public class Desempenho {
 	private String codigoDoPiloto;
 	private String nomeDoPiloto;
@@ -13,6 +15,7 @@ public class Desempenho {
 				+ formataTempoDeProva(tempoTotalDaProva) + "]";
 	}
 
+	//método que transforma o total de segundos em minuto e segundos
 	private String formataTempoDeProva(double tempoTotalDaProva) {
 		Integer minutos = (int) ((tempoTotalDaProva / 60));
 		Integer segundos = (int) ((tempoTotalDaProva%60));

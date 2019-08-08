@@ -1,0 +1,2 @@
+Rode o método main dentro da classe Rankeando para obter o resultado
+havia um erro de digitação no nome F.MASSA (F.MASS) na linha referente à sua 4a volta. O erro foi corrigido no arquivo CSV
