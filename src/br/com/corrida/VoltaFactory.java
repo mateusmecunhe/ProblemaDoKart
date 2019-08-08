@@ -1,18 +1,19 @@
 package br.com.corrida;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class VoltaFactory {
-	
 
 	private List<Volta> listaDeVoltas = new ArrayList<Volta>();
 	private Set<String> listaDePilotos = new HashSet<>();
 
-	public List<Volta> getListaDeVoltas() {
-		return listaDeVoltas;
+	public ArrayList<Volta> getListaDeVoltas() {
+		return (ArrayList<Volta>) listaDeVoltas;
 	}
 
 	public Set<String> getListaDePilotos() {
@@ -41,37 +42,45 @@ public class VoltaFactory {
 				contador++;
 			}
 		}
-
-		System.out.println("O piloto " + nomeDoPilotoAChecar + " completou " + contador + " voltas");
 		return contador;
+	}
 
+	public boolean checaSeCompletouAProva(String nomeDoPilotoAChecar) {
+		if (calculaTotalDeVoltas(nomeDoPilotoAChecar).equals((Integer) 4)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public double calculaTempoTotalDeProva(String nomeDoPilotoAChecar) {
 		double tempoTotalEmSegundos = 0;
 		for (Volta volta : listaDeVoltas) {
 			if (volta.getNomeDoPiloto().equals(nomeDoPilotoAChecar)) {
-				if(calculaTotalDeVoltas(nomeDoPilotoAChecar) < 4) {
+				if (calculaTotalDeVoltas(nomeDoPilotoAChecar) < 4) {
 					System.out.println("o piloto " + volta.getNomeDoPiloto() + " não completou a prova");
 					break;
-				}else {
+				} else {
 					tempoTotalEmSegundos += volta.getTempoDaVoltaEmSegundos();
 				}
 			}
 		}
 		return tempoTotalEmSegundos;
 	}
-	
-	public List<String> ordenaVencedor(Set listaDePilotos) {
-		List<String> listaOrdenada = new ArrayList<>();
-		
-		listaDePilotos.forEach(p->{
-			double tempoDaProva;
-			tempoDaProva = calculaTempoTotalDeProva((String) p);
-			System.out.println((String) p + " fez a prova em " + tempoDaProva);
-		});
-		
-		return listaOrdenada;
+
+	public void adicionaNaListaASerOrdenada(List<Volta> listaDevoltas) {
+
 	}
+
+	public String findCodigoDoPiloto(String nomeDoPiloto) {
+		for(int i = 0; i<listaDeVoltas.size();i++) {
+			if(listaDeVoltas.get(i).getNomeDoPiloto().equals(nomeDoPiloto)) {
+				return listaDeVoltas.get(i).getCodigoDoPiloto();
+			} 
+		}
+		return "não encontrado";
+		
+	}
+
 
 }

@@ -12,6 +12,7 @@ public class Volta {
 	private String velocidadeMediaDaVolta;
 	
 		
+	public Volta() {}
 	
 
 	public Volta(String hora, String codigoDoPiloto, String nomeDoPiloto, int numeroDaVolta,

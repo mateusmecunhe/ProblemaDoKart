@@ -9,6 +9,7 @@ public class ScannerDoCsv {
 	public void lendoOCsv(Scanner scanner, VoltaFactory voltaFactory) {
 		
 		while (scanner.hasNextLine()) {
+			
 
 			String linha = scanner.nextLine();
 			Scanner linhaScanner = new Scanner(linha);
